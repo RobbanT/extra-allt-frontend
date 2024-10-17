@@ -1,7 +1,9 @@
 <nav>
-  <a>Produkter</a>
-  <a>Logga in</a>
-  <a>Logga ut</a>
-  <a>Registrera</a>
-  <a>Mina ordrar</a>
+  <a (click)="changeTitle('Produkter')">Produkter</a>
+  <a (click)="changeTitle('Logga in')" [hidden]="userLoggedIn()">Logga in</a>
+  <a (click)="logOut()" [hidden]="!userLoggedIn()">Logga ut</a>
+  <a (click)="changeTitle('Registrera')" [hidden]="userLoggedIn()"
+    >Registrera</a
+  >
+  <a (click)="changeTitle('Journal')" [hidden]="!userLoggedIn()">Mina ordrar</a>
 </nav>

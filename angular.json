@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "extra-allt-backend": {
+    "extra-allt-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/extra-allt-backend",
+            "outputPath": "dist/extra-allt-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "extra-allt-backend:build:production"
+              "buildTarget": "extra-allt-frontend:build:production"
             },
             "development": {
-              "buildTarget": "extra-allt-backend:build:development"
+              "buildTarget": "extra-allt-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"

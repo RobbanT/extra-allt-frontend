@@ -1,0 +1,41 @@
+header {
+  background-color: #1a1a1d;
+  padding: 0 25px;
+  border-bottom: 3px solid #3438f5;
+}
+
+img {
+  float: left;
+  width: 25px;
+  height: 25px;
+  padding: 20px 10px 0 0;
+}
+
+h1 {
+  font: lighter 25px Futura;
+  font-style: italic;
+  color: #ffffff;
+  display: inline-block;
+}
+
+button {
+  float: right;
+  width: 35px;
+  height: 35px;
+  padding: 20px 10px 0 0;
+  border-style: none;
+  border-radius: 20px;
+  margin-top: 15px;
+  background-color: #3438f5;
+  background-image: url(/cart-button.svg);
+  background-size: 55%;
+  background-position-x: 42%;
+  background-position-y: 60%;
+  background-repeat: no-repeat;
+  transition: 0.2s;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #0105bb;
+}

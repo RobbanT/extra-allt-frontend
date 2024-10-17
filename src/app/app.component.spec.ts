@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'extra-allt-backend' title`, () => {
+  it(`should have the 'extra-allt-frontend' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('extra-allt-backend');
+    expect(app.title).toEqual('extra-allt-frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, extra-allt-backend');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, extra-allt-frontend');
   });
 });

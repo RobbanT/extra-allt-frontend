@@ -1,4 +1,4 @@
-export enum Categories { ELECTRONICS, FOOD, TOYS, FURNITURE, CLOTHES, }
+export enum Categories { ELECTRONICS, FOOD, TOYS, FURNITURE, CLOTHES }
 export interface Product {
     category: Categories;
     title: string;

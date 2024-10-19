@@ -28,11 +28,11 @@ export class LoginComponent {
       .then((res) => res.json())
       .then((data) => {
         (data as User).password = '';
-        (data as User).posts = [];
+        (data as User).orders = [];
         localStorage.setItem('user', JSON.stringify(data));
         alert(`Användaren "${this.username}" är nu inloggad!`);
         this.changeUserIsLoggedIn(true);
-        this.changeTitle('Hem');
+        this.changeTitle('Produkter');
       })
       .catch(() =>
         alert(

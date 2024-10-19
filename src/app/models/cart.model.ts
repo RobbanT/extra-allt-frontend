@@ -25,6 +25,7 @@ export class Cart {
     // Tömmer hela varukorgen.
     clearCart(): void {
         this.cartItems = [];
+        localStorage.removeItem('cart');
         this.saveCart();
     }
 

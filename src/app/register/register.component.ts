@@ -33,7 +33,7 @@ export class RegisterComponent {
         .then((res) => res.json())
         .then(() => {
           alert(`Användaren "${this.username}" är nu registrerad!`);
-          this.changeTitle('Hem');
+          this.changeTitle('Produkter');
         })
         .catch(() =>
           alert(`Användaren "${this.username}" existerar redan. Försök igen!`)

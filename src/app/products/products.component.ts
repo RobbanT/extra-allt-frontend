@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Product, Categories } from '../models/product.model';
+import { ProductComponent } from '../product/product.component';
+import { Cart } from '../models/cart.model';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [],
+  imports: [ProductComponent],
   templateUrl: './products.component.html',
-  styleUrl: './products.component.css'
+  styleUrl: './products.component.css',
 })
 export class ProductsComponent {
-
+  cart = input<Cart>();
+  userLoggedIn = input<boolean>();
+  products: Array<Product> = [];
+  constructor() {
+    fetch('http://localhost:8080/products')
+      .then((res) => res.json())
+      .then((data) => {
+        this.products = data;
+      });
+  }
 }

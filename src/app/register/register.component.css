@@ -46,6 +46,7 @@ button {
   border-radius: 20px;
   background-color: #3438f5;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transition: 0.2s;
 }
 
 button:hover {

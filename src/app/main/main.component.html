@@ -2,7 +2,10 @@
   <div class="container">
     <h2>{{ title() }}</h2>
     @if(title() == "Produkter"){
-    <app-products></app-products>
+    <app-products
+      [cart]="cart()"
+      [userLoggedIn]="userLoggedIn()"
+    ></app-products>
     } @else if (title()== "Logga in") {
     <app-login
       (changedTitle)="changeTitle($event)"

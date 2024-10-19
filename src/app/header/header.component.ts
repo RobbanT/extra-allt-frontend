@@ -1,14 +1,14 @@
 import { Component, input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { Cart } from '../models/cart.model';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatIconModule, MatButtonModule],
+  imports: [],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
   userLoggedIn = input();
+  cart = input<Cart>();
 }

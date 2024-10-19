@@ -3,6 +3,7 @@ import { ProductsComponent } from '../products/products.component';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
 import { OrdersComponent } from '../orders/orders.component';
+import { Cart } from '../models/cart.model';
 
 @Component({
   selector: 'app-main',
@@ -19,7 +20,9 @@ import { OrdersComponent } from '../orders/orders.component';
 export class MainComponent {
   title = input();
   changedTitle = output<string>();
+  userLoggedIn = input<boolean>();
   changedUserLoggedIn = output<boolean>();
+  cart = input<Cart>();
 
   changeUserLoggedIn(userloggedIn: boolean) {
     this.changedUserLoggedIn.emit(userloggedIn);

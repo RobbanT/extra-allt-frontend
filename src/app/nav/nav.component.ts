@@ -1,4 +1,5 @@
 import { Component, input, output } from '@angular/core';
+import { Cart } from '../models/cart.model';
 
 @Component({
   selector: 'app-nav',
@@ -11,6 +12,7 @@ export class NavComponent {
   userLoggedIn = input();
   changedUserLoggedIn = output<boolean>();
   changedTitle = output<string>();
+  cart = input<Cart>();
 
   changeTitle(title: string) {
     this.changedTitle.emit(title);
@@ -18,7 +20,7 @@ export class NavComponent {
 
   logOut() {
     localStorage.removeItem('user');
-    localStorage.removeItem('cart');
+    this.cart()?.clearCart();
     this.changedTitle.emit('Produkter');
     this.changedUserLoggedIn.emit(false);
   }

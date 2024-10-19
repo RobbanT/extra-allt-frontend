@@ -8,11 +8,11 @@ img {
   float: left;
   width: 25px;
   height: 25px;
-  padding: 20px 10px 0 0;
+  padding: 18px 10px 0 0;
 }
 
 h1 {
-  font: lighter 25px Futura;
+  font: bold 25px Arial;
   font-style: italic;
   color: #ffffff;
   display: inline-block;
@@ -20,19 +20,41 @@ h1 {
 
 button {
   float: right;
-  width: 35px;
-  height: 35px;
-  padding: 20px 10px 0 0;
+  width: 33px;
+  height: 33px;
+  padding: 0 0 0 0;
   border-style: none;
   border-radius: 20px;
-  margin-top: 15px;
+  margin-top: 18px;
   background-color: #3438f5;
-  background-image: url(/cart-button.svg);
-  background-size: 55%;
-  background-position-x: 42%;
-  background-position-y: 60%;
+  background-size: 60%;
   background-repeat: no-repeat;
   transition: 0.2s;
+  color: #ffffff;
+}
+
+button > span {
+  display: block;
+  font: bold 7px Arial;
+  background-color: #ffffff;
+  color: #606062;
+  padding: 3px;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+#cart-button {
+  margin-right: 10px;
+  background-image: url(/cart-button.svg);
+  background-position-x: 42%;
+  background-position-y: 60%;
+}
+
+#ai-button {
+  background-image: url(/ai-button.svg);
+  background-position-x: 50%;
+  background-position-y: 50%;
 }
 
 button:hover {

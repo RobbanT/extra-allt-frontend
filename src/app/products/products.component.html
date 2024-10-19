@@ -1,1 +1,64 @@
-<p>products works!</p>
+<div class="inner-container">
+  <h3>Elektronik</h3>
+  <ul>
+    @for(product of products; track product.category) { @if
+    (product.category.toString() === "ELECTRONICS") {
+    <app-product
+      [product]="product"
+      [cart]="cart()"
+      [userLoggedIn]="userLoggedIn()"
+    ></app-product>
+    } }
+  </ul>
+</div>
+<div class="inner-container">
+  <h3>Leksaker</h3>
+  <ul>
+    @for(product of products; track product.category) { @if
+    (product.category.toString() === "TOYS") {<app-product
+      [product]="product"
+      [cart]="cart()"
+      [userLoggedIn]="userLoggedIn()"
+    ></app-product>
+    } }
+  </ul>
+</div>
+<div class="inner-container">
+  <h3>Mat</h3>
+  <ul>
+    @for(product of products; track product.category) { @if
+    (product.category.toString() === "FOOD") {
+    <app-product
+      [product]="product"
+      [cart]="cart()"
+      [userLoggedIn]="userLoggedIn()"
+    ></app-product>
+    } }
+  </ul>
+</div>
+<div class="inner-container">
+  <h3>Kläder</h3>
+  <ul>
+    @for(product of products; track product.category) { @if
+    (product.category.toString() === "CLOTHES") {
+    <app-product
+      [product]="product"
+      [cart]="cart()"
+      [userLoggedIn]="userLoggedIn()"
+    ></app-product>
+    } }
+  </ul>
+</div>
+<div class="inner-container">
+  <h3>Möbler</h3>
+  <ul>
+    @for(product of products; track product.category) { @if
+    (product.category.toString() === "FURNITURE") {
+    <app-product
+      [product]="product"
+      [cart]="cart()"
+      [userLoggedIn]="userLoggedIn()"
+    ></app-product>
+    } }
+  </ul>
+</div>

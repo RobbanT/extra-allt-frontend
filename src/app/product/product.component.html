@@ -1,1 +1,8 @@
-<p>product works!</p>
+<li>
+  <h4>{{ product()?.title }}</h4>
+  <img src="{{ product()?.image }}" />
+  <span>{{ product()?.price + ":-" }}</span>
+  @if(userLoggedIn()) {
+  <button (click)="addToCart(product())">Lägg i varukorg</button>
+  }
+</li>

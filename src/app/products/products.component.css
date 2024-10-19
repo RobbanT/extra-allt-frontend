@@ -1,0 +1,19 @@
+.inner-container {
+  background-color: white;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  font: bold medium Arial;
+  text-align: center;
+  color: #555555;
+  margin-top: 0px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  text-decoration: underline;
+}

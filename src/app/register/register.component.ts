@@ -1,10 +1,5 @@
-import { Component, Inject, output } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register',
@@ -18,18 +13,6 @@ export class RegisterComponent {
   username: string = '';
   password: string = '';
   passwordConfirm: string = '';
-
-  constructor(public dialog: MatDialog) {}
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(Dialog, {
-      width: '550px',
-      height: '400px',
-      autoFocus: true,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {});
-  }
 
   changeTitle(title: string) {
     this.changedTitle.emit(title);
@@ -56,21 +39,7 @@ export class RegisterComponent {
           alert(`Användaren "${this.username}" existerar redan. Försök igen!`)
         );
     } else {
-      this.openDialog();
       alert('Lösenorden stämmer inte överens. Försök igen!');
     }
-  }
-}
-
-@Component({
-  selector: 'dialog',
-  templateUrl: 'dialog.html',
-  styleUrl: 'dialog.css',
-})
-export class Dialog {
-  constructor(public dialogRef: MatDialogRef<Dialog>) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
   }
 }

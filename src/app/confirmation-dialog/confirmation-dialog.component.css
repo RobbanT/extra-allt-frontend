@@ -1,0 +1,30 @@
+div {
+  padding: 25px;
+}
+
+h4 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font: bold 20px Arial;
+  color: #606062;
+  text-align: center;
+}
+
+button {
+  margin-top: 15px;
+  color: #ffffff;
+  font: bold 15px Arial;
+  height: 40px;
+  width: 100%;
+  border-style: none;
+  border-radius: 20px;
+  background-color: #3438f5;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transition: 0.2s;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #0105bb;
+  box-shadow: none;
+}

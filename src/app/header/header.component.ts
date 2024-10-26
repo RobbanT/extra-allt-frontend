@@ -20,12 +20,17 @@ export class HeaderComponent {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '900px',
       autoFocus: true,
-      data: this.dialogTitle,
+      data: { title: this.dialogTitle, cart: this.cart() },
     });
   }
 
   openChat(): void {
     this.dialogTitle = 'Chat';
+    this.openDialog();
+  }
+
+  openCart(): void {
+    this.dialogTitle = 'Varukorg';
     this.openDialog();
   }
 }

@@ -2,7 +2,7 @@
   <h1>Extra Allt</h1>
   <img src="cart.svg" alt="ikon" />
   <button id="ai-button" [hidden]="!userLoggedIn()" (click)="openChat()"></button>
-  <button id="cart-button" [hidden]="!userLoggedIn()">
+  <button id="cart-button" [hidden]="!userLoggedIn()" (click)="openCart()">
     @if(cart()!.totalProducts() > 0 ) {
     <span>{{ cart()?.totalProducts() }}</span>
     }

@@ -23,10 +23,12 @@ export class ChatComponent {
   formSubmit() {
     this.history.push('Du - ' + this.prompt);
     localStorage.setItem('chat', JSON.stringify(this.history));
+    let tempPrompt: string = this.prompt;
+    this.prompt = '';
     fetch('http://localhost:8080/chat', {
       method: 'POST',
       body: JSON.stringify({
-        prompt: this.prompt,
+        prompt: tempPrompt,
       }),
     })
       .then((res) => res.text())

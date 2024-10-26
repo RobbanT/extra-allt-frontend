@@ -22,7 +22,7 @@ export class RegisterComponent {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '900px',
       autoFocus: true,
-      data: this.dialogTitle,
+      data: { title: this.dialogTitle },
     });
   }
   changeTitle(title: string) {

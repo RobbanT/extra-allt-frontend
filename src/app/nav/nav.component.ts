@@ -20,6 +20,7 @@ export class NavComponent {
 
   logOut() {
     localStorage.removeItem('user');
+    localStorage.removeItem('chat');
     this.cart()?.clearCart();
     this.changedTitle.emit('Produkter');
     this.changedUserLoggedIn.emit(false);

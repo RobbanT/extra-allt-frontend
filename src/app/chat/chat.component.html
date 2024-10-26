@@ -1,8 +1,18 @@
 <div>
-  <p>chat works!</p>
-  <p>chat works!</p>
-  <p>chat works!</p>
-  <p>chat works!</p>
-  <p>chat works!</p>
-  <p>chat works!</p>
+  <ul>
+    @for(message of history; track message.length) {
+    <li>{{ message }}</li>
+    }
+  </ul>
+  <form (ngSubmit)="formSubmit()">
+    <input
+      placeholder="Ställ mig en fråga..."
+      name="question"
+      type="text"
+      maxLength="{64}"
+      required
+      [(ngModel)]="prompt"
+    />
+    <button type="sumbit">Skicka</button>
+  </form>
 </div>

@@ -1,5 +1,7 @@
 import { Component, input } from '@angular/core';
 import { Cart } from '../models/cart.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -11,4 +13,24 @@ import { Cart } from '../models/cart.model';
 export class HeaderComponent {
   userLoggedIn = input();
   cart = input<Cart>();
+  dialogTitle: string = '';
+  constructor(public dialog: MatDialog) {}
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '900px',
+      autoFocus: true,
+      data: { title: this.dialogTitle, cart: this.cart() },
+    });
+  }
+
+  openChat(): void {
+    this.dialogTitle = 'Chat';
+    this.openDialog();
+  }
+
+  openCart(): void {
+    this.dialogTitle = 'Varukorg';
+    this.openDialog();
+  }
 }

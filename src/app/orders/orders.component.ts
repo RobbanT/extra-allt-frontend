@@ -12,7 +12,7 @@ import { OrderComponent } from "../order/order.component";
 export class OrdersComponent {
 orders: Array<Order> = [];
   constructor() {
-    fetch(`http://localhost:8080/user/{username}/orders"${JSON.parse(localStorage.getItem('user') as string).username}/orders`)
+    fetch(`http://localhost:8080/user/${JSON.parse(localStorage.getItem('user') as string).username}/orders`)
       .then((res) => res.json()).then((data) => {
         this.orders = data;
         for (let order of this.orders) {

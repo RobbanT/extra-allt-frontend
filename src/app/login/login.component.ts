@@ -1,6 +1,8 @@
 import { Component, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { User } from '../models/user.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,16 @@ export class LoginComponent {
   changedTitle = output<string>();
   username: string = '';
   password: string = '';
+  dialogTitle: string = '';
+  constructor(public dialog: MatDialog) {}
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '900px',
+      autoFocus: true,
+      data: { title: this.dialogTitle },
+    });
+  }
   changeUserIsLoggedIn(userLoggedIn: boolean) {
     this.changedUserLoggedIn.emit(userLoggedIn);
   }
@@ -30,14 +41,14 @@ export class LoginComponent {
         (data as User).password = '';
         (data as User).orders = [];
         localStorage.setItem('user', JSON.stringify(data));
-        alert(`Användaren "${this.username}" är nu inloggad!`);
+        this.dialogTitle = `Användaren "${this.username}" är nu inloggad!`;
+        this.openDialog();
         this.changeUserIsLoggedIn(true);
         this.changeTitle('Produkter');
       })
-      .catch(() =>
-        alert(
-          `Användaren "${this.username}" med lösenordet "${this.password}" existerar inte. Försök igen!`
-        )
-      );
+      .catch(() => {
+        this.dialogTitle = `Användaren "${this.username}" med lösenordet "${this.password}" existerar inte. Försök igen!`;
+        this.openDialog();
+      });
   }
 }

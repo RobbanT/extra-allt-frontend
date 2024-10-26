@@ -1,5 +1,7 @@
 import { Component, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,16 @@ export class RegisterComponent {
   username: string = '';
   password: string = '';
   passwordConfirm: string = '';
+  dialogTitle: string = '';
+  constructor(public dialog: MatDialog) {}
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '900px',
+      autoFocus: true,
+      data: { title: this.dialogTitle },
+    });
+  }
   changeTitle(title: string) {
     this.changedTitle.emit(title);
   }
@@ -32,14 +43,17 @@ export class RegisterComponent {
       })
         .then((res) => res.json())
         .then(() => {
-          alert(`Användaren "${this.username}" är nu registrerad!`);
+          this.dialogTitle = `Användaren "${this.username}" är nu registrerad!`;
+          this.openDialog();
           this.changeTitle('Produkter');
         })
-        .catch(() =>
-          alert(`Användaren "${this.username}" existerar redan. Försök igen!`)
-        );
+        .catch(() => {
+          this.dialogTitle = `Användaren "${this.username}" existerar redan. Försök igen!`;
+          this.openDialog();
+        });
     } else {
-      alert('Lösenorden stämmer inte överens. Försök igen!');
+      this.dialogTitle = 'Lösenorden stämmer inte överens. Försök igen!';
+      this.openDialog();
     }
   }
 }

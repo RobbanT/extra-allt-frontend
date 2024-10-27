@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { Cart } from '../models/cart.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
@@ -13,7 +13,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 export class HeaderComponent {
   userLoggedIn = input();
   cart = input<Cart>();
-  dialogTitle: string = '';
+  dialogTitle = '';
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {

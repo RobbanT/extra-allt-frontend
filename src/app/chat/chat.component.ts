@@ -14,7 +14,7 @@ export class ChatComponent {
   constructor() {
     this.history = [];
     if (localStorage.getItem('chat') == null) {
-      this.history.push('Butiksbiträde - Vad kan jag hjälpa dig med?');
+      this.history.push('AI - Vad kan jag hjälpa dig med?');
       localStorage.setItem('chat', JSON.stringify(this.history));
     } else {
       this.history = JSON.parse(<string>localStorage.getItem('chat'));
@@ -33,7 +33,7 @@ export class ChatComponent {
     })
       .then((res) => res.text())
       .then((data) => {
-        this.history.push('Butiksbiträde - ' + data);
+        this.history.push('AI - ' + data);
         localStorage.setItem('chat', JSON.stringify(this.history));
       });
   }

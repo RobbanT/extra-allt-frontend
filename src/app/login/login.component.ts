@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { User } from '../models/user.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { Cart } from '../models/cart.model';
 
 @Component({
   selector: 'app-login',

@@ -1,6 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Cart } from '../models/cart.model';
 import { CartItem } from '../models/cartItem.model';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-cart',
@@ -11,6 +12,8 @@ import { CartItem } from '../models/cartItem.model';
 })
 export class CartComponent {
   cart = input<Cart>();
-
-  openCheckoutDialog(): void {}
+  changedTitle = output<string>();
+  openCheckoutDialog(): void {
+    this.changedTitle.emit('Kassa');
+  }
 }

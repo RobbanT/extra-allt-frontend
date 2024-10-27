@@ -1,0 +1,55 @@
+import { Component, input, output } from '@angular/core';
+import { Cart } from '../models/cart.model';
+import { loadStripe } from '@stripe/stripe-js';
+
+@Component({
+  selector: 'app-checkout',
+  standalone: true,
+  imports: [],
+  templateUrl: './checkout.component.html',
+  styleUrl: './checkout.component.css',
+})
+export class CheckoutComponent {
+  cart = input<Cart>();
+  changedTitle = output<string>();
+
+  constructor() {
+    this.initializeCheckoutSession();
+  }
+
+  onCompleted(): void {
+    localStorage.removeItem('cart');
+    this.checkout.destroy('#checkout-div');
+  }
+
+  checkout: any;
+  async initializeCheckoutSession() {
+    if (
+      this.checkout != null &&
+      this.checkout.embeddedCheckout.isDestroyed === false
+    ) {
+      this.checkout.destroy('#checkout-div');
+    }
+    let stripe = await loadStripe(
+      'pk_test_51OmWP0DYlwtrgVcMwJHIMlNRU3WSPoDMSVpVmoxwO4XIHwIkR6UjU7qpc5GrIQULzPPrrNRA6PUtkUcvB8npFW3400LGqj3zkD'
+    );
+    const response = await fetch(
+      `http://localhost:8080/create-checkout-session/${
+        JSON.parse(localStorage.getItem('user') as string).username
+      }`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: localStorage.getItem('cart'),
+      }
+    );
+    const { clientSecret } = await response.json();
+    this.checkout = await stripe!.initEmbeddedCheckout({
+      clientSecret,
+      onComplete: this.onCompleted,
+    });
+    this!.checkout.mount('#checkout-div');
+  }
+}

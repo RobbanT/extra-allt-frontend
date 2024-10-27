@@ -3,7 +3,12 @@
   @if(data.title == "Chat") {
   <app-chat></app-chat>
   }@else if (data.title == "Varukorg") {
-  <app-cart [cart]="data.cart"></app-cart>
+  <app-cart [cart]="data.cart" (changedTitle)="setTitle($event)"></app-cart>
+  }@else if (data.title == "Kassa") {
+  <app-checkout
+    [cart]="data.cart"
+    (changedTitle)="setTitle($event)"
+  ></app-checkout>
   }
   <button (click)="onNoClick()">Stäng</button>
 </div>

@@ -29,7 +29,7 @@ export class CheckoutComponent {
       'pk_test_51OmWP0DYlwtrgVcMwJHIMlNRU3WSPoDMSVpVmoxwO4XIHwIkR6UjU7qpc5GrIQULzPPrrNRA6PUtkUcvB8npFW3400LGqj3zkD'
     );
     const response = await fetch(
-      `http://localhost:8080/create-checkout-session/${
+      `https://extra-allt-frontend-app-kszhr.ondigitalocean.app/create-checkout-session/${
         JSON.parse(localStorage.getItem('user') as string).username
       }`,
       {
@@ -55,7 +55,7 @@ export class CheckoutComponent {
           })
         );
         fetch(
-          `http://localhost:8080/user/${
+          `https://extra-allt-frontend-app-kszhr.ondigitalocean.app/user/${
             JSON.parse(localStorage.getItem('user') as string).username
           }/order`,
           {

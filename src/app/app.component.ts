@@ -20,7 +20,11 @@ export class AppComponent {
   userLoggedIn = signal(localStorage.getItem('user') != null);
   cart = signal(new Cart());
   stompClient = signal(
-    Stomp.over(new SockJS('http://localhost:8080/websocket'))
+    Stomp.over(
+      new SockJS(
+        'https://extra-allt-frontend-app-kszhr.ondigitalocean.app/websocket'
+      )
+    )
   );
 
   constructor(private _snackBar: MatSnackBar) {

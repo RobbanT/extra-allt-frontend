@@ -18,7 +18,7 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
   dialogTitle: string = '';
-  
+
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
@@ -37,7 +37,9 @@ export class LoginComponent {
   }
 
   formSubmit() {
-    fetch(`http://localhost:8080/user/${this.username}/${this.password}`)
+    fetch(
+      `https://extra-allt-frontend-app-kszhr.ondigitalocean.app/user/${this.username}/${this.password}`
+    )
       .then((res) => res.json())
       .then((data) => {
         (data as User).password = '';

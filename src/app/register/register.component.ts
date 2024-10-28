@@ -10,7 +10,6 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
-  
 export class RegisterComponent {
   changedTitle = output<string>();
   username: string = '';
@@ -34,7 +33,7 @@ export class RegisterComponent {
 
   formSubmit() {
     if (this.password == this.passwordConfirm) {
-      fetch('http://localhost:8080/user', {
+      fetch('https://extra-allt-frontend-app-kszhr.ondigitalocean.app/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,12 +42,14 @@ export class RegisterComponent {
           username: this.username,
           password: this.password,
         }),
-      }).then((res) => res.json())
+      })
+        .then((res) => res.json())
         .then(() => {
           this.dialogTitle = `Användaren "${this.username}" är nu registrerad!`;
           this.openDialog();
           this.changeTitle('Produkter');
-        }).catch(() => {
+        })
+        .catch(() => {
           this.dialogTitle = `Användaren "${this.username}" existerar redan. Försök igen!`;
           this.openDialog();
         });

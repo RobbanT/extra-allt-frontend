@@ -13,7 +13,7 @@ export class OrdersComponent {
   orders: Array<Order> = [];
   constructor() {
     fetch(
-      `https://extra-allt-frontend-app-kszhr.ondigitalocean.app/user/${
+      `https://extra-allt-backend-app-becxx.ondigitalocean.app/user/${
         JSON.parse(localStorage.getItem('user') as string).username
       }/orders`
     )

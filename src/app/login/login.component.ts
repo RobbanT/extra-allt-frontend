@@ -38,7 +38,7 @@ export class LoginComponent {
 
   formSubmit() {
     fetch(
-      `https://extra-allt-frontend-app-kszhr.ondigitalocean.app/user/${this.username}/${this.password}`
+      `https://extra-allt-backend-app-becxx.ondigitalocean.app/user/${this.username}/${this.password}`
     )
       .then((res) => res.json())
       .then((data) => {

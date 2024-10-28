@@ -22,7 +22,7 @@ export class AppComponent {
   stompClient = signal(
     Stomp.over(
       new SockJS(
-        'https://extra-allt-frontend-app-kszhr.ondigitalocean.app/websocket'
+        'https://extra-allt-backend-app-becxx.ondigitalocean.app/websocket'
       )
     )
   );

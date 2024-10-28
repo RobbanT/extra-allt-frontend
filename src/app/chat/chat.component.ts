@@ -25,7 +25,7 @@ export class ChatComponent {
     localStorage.setItem('chat', JSON.stringify(this.history));
     let tempPrompt: string = this.prompt;
     this.prompt = '';
-    fetch('http://localhost:8080/chat', {
+    fetch('https://extra-allt-frontend-app-kszhr.ondigitalocean.app/chat', {
       method: 'POST',
       body: JSON.stringify({
         prompt: tempPrompt,

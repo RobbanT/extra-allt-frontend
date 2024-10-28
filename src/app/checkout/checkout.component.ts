@@ -18,38 +18,6 @@ export class CheckoutComponent {
 
   ngOnInit() {
     this.initializeCheckoutSession();
-    console.log(this.stompClient());
-  }
-
-  async onCompleted() {
-    this.checkout.destroy('#checkout-div');
-    this.stompClient()?.send(
-      '/app/placed',
-      {},
-      JSON.stringify({
-        username: `${
-          JSON.parse(localStorage.getItem('user') as string).username
-        }`,
-      })
-    );
-    fetch(
-      `http://localhost:8080/${
-        JSON.parse(localStorage.getItem('user') as string).username
-      }/order`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          cart: this.cart()?.getCart(),
-        }),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        alert('Färdig');
-      });
   }
 
   async initializeCheckoutSession() {
@@ -72,14 +40,35 @@ export class CheckoutComponent {
     const { clientSecret } = await response.json();
     this.checkout = await stripe!.initEmbeddedCheckout({
       clientSecret,
-      onComplete: this.onCompleted,
-    });
-
-    this.checkout.destroy('#checkout-div');
-
-    this.checkout = await stripe!.initEmbeddedCheckout({
-      clientSecret,
-      onComplete: this.onCompleted,
+      onComplete: () => {
+        this.stompClient()?.send(
+          '/app/placed',
+          {},
+          JSON.stringify({
+            username: `${
+              JSON.parse(localStorage.getItem('user') as string).username
+            }`,
+          })
+        );
+        fetch(
+          `http://localhost:8080/${
+            JSON.parse(localStorage.getItem('user') as string).username
+          }/order`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              cart: this.cart()?.getCart(),
+            }),
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            alert('Färdig');
+          });
+      },
     });
 
     this!.checkout.mount('#checkout-div');

@@ -4,7 +4,7 @@ import { ChatComponent } from '../chat/chat.component';
 import { CartComponent } from '../cart/cart.component';
 import { Cart } from '../models/cart.model';
 import { CheckoutComponent } from '../checkout/checkout.component';
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe, StripeEmbeddedCheckout } from '@stripe/stripe-js';
 import Stomp from 'stompjs';
 
 export interface DialogData {
@@ -22,7 +22,6 @@ export interface DialogData {
 })
 export class ConfirmationDialogComponent {
   title = signal('');
-  checkout: any;
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmationDialogComponent>,

@@ -20,6 +20,10 @@ export class CheckoutComponent {
     this.initializeCheckoutSession();
   }
 
+  ngOnDestroy() {
+    this!.checkout.destroy('#checkout-div');
+  }
+
   async initializeCheckoutSession() {
     let stripe = await loadStripe(
       'pk_test_51OmWP0DYlwtrgVcMwJHIMlNRU3WSPoDMSVpVmoxwO4XIHwIkR6UjU7qpc5GrIQULzPPrrNRA6PUtkUcvB8npFW3400LGqj3zkD'
@@ -51,7 +55,7 @@ export class CheckoutComponent {
           })
         );
         fetch(
-          `http://localhost:8080/${
+          `http://localhost:8080/user/${
             JSON.parse(localStorage.getItem('user') as string).username
           }/order`,
           {
@@ -59,18 +63,14 @@ export class CheckoutComponent {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-              cart: this.cart()?.getCart(),
-            }),
+            body: localStorage.getItem('cart'),
           }
         )
           .then((res) => res.json())
-          .then((data) => {
-            alert('Färdig');
-          });
+          .then((data) => {});
+        this.cart()?.clearCart();
       },
     });
-
     this!.checkout.mount('#checkout-div');
   }
 }

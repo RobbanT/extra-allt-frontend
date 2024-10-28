@@ -16,7 +16,7 @@ export class HeaderComponent {
   cart = input<Cart>();
   dialogTitle = '';
   stompClient = input<Stomp.Client>();
-  
+
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {

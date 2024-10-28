@@ -16,7 +16,7 @@ export class ProductsComponent {
   products: Array<Product> = [];
 
   constructor() {
-    fetch('https://extra-allt-frontend-app-kszhr.ondigitalocean.app/products')
+    fetch('https://extra-allt-backend-app-becxx.ondigitalocean.app/products')
       .then((res) => res.json())
       .then((data) => {
         this.products = data;

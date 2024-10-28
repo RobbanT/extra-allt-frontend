@@ -33,7 +33,7 @@ export class RegisterComponent {
 
   formSubmit() {
     if (this.password == this.passwordConfirm) {
-      fetch('https://extra-allt-frontend-app-kszhr.ondigitalocean.app/user', {
+      fetch('https://extra-allt-backend-app-becxx.ondigitalocean.app/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,14 +1,3 @@
-<app-header [userLoggedIn]="getUserLoggedIn()" [cart]="getCart()"></app-header>
-<app-nav
-  (changedTitle)="setTitle($event)"
-  [userLoggedIn]="getUserLoggedIn()"
-  (changedUserLoggedIn)="setUserLoggedIn($event)"
-  [cart]="getCart()"
-></app-nav>
-<app-main
-  (changedTitle)="setTitle($event)"
-  [title]="getTitle()"
-  [userLoggedIn]="getUserLoggedIn()"
-  (changedUserLoggedIn)="setUserLoggedIn($event)"
-  [cart]="getCart()"
-></app-main>
+<app-header [userLoggedIn]="getUserLoggedIn()" [cart]="getCart()" [stompClient]="this.stompClient()"></app-header>
+<app-nav (changedTitle)="setTitle($event)" [userLoggedIn]="getUserLoggedIn()" (changedUserLoggedIn)="setUserLoggedIn($event)" [cart]="getCart()"></app-nav>
+<app-main (changedTitle)="setTitle($event)" [title]="getTitle()" [userLoggedIn]="getUserLoggedIn()" (changedUserLoggedIn)="setUserLoggedIn($event)" [cart]="getCart()"></app-main>

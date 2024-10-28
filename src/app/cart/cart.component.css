@@ -27,12 +27,17 @@ button:hover {
 }
 
 .plus-button {
+  float: right;
+  margin-top: -25px;
   width: 20px;
 }
 
 .minus-button {
+  float: right;
   width: 20px;
+  margin-top: -25px;
   border-radius: 15px 0 0 15px;
+  margin-right: 50px;
 }
 
 .minus-button:disabled {
@@ -41,16 +46,16 @@ button:hover {
 }
 
 .remove-button {
-  margin-left: 5px;
-  width: 20px;
+  width: 60px;
+  margin-top: -25px;
   border-radius: 15px;
-  background-image: url(/xmark.svg);
-  background-color: #ffffff;
+  background-color: #ed141b;
+  float: right;
+  margin-right: 75px;
 }
 
 .remove-button:hover {
-  background-image: url(/xmark-hover.svg);
-  background-color: #ffffff;
+  background-color: #b92424;
 }
 
 ul {
@@ -58,13 +63,13 @@ ul {
   margin-bottom: 10px;
   overflow-y: auto;
   padding: 0 2px 0 0;
-  height: 250px;
+  height: 350px;
   display: block;
   padding-bottom: 5px;
 }
 
 li {
-  height: 50px;
+  height: 90px;
   background-color: #ffffff;
   color: #606062;
   list-style-type: none;
@@ -78,16 +83,18 @@ li {
 }
 
 img {
-  float: left;
-  max-height: 50px;
-  min-height: 50px;
+  display: block;
+  max-height: 70px;
+  min-height: 70px;
   max-width: 100%;
   width: auto;
   height: auto;
+  margin-top: 20px;
   justify-content: center;
 }
 
 h4 {
+  display: block;
   font: bold 15px Arial;
   color: #606062;
   text-align: center;
@@ -95,24 +102,30 @@ h4 {
 
 li > h4 {
   float: left;
-  margin: 0 0 0 5px;
+  margin: 0 0 0 0;
 }
 
 li > span {
   display: inline;
   float: right;
+  font: bold 13px Arial;
 }
 
+li > button {
+  display: inline-block;
+}
 div > span {
   display: block;
   text-align: center;
-  font: lighter 15px Arial;
+  font: bold 15px Arial;
   color: #606062;
   margin-bottom: 17px;
-  margin-top: -20px;
+  margin-top: 15px;
 }
 
 input {
+  margin-right: 20px;
+  float: right;
   display: inline;
   font: lighter 11px Arial;
   padding-bottom: 3px;
@@ -124,6 +137,7 @@ input {
   box-shadow: none;
   color: #606062;
   text-align: center;
+  margin-top: -25px;
 }
 
 ::-webkit-scrollbar {

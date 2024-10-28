@@ -1,7 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { Cart } from '../models/cart.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import Stomp from 'stompjs';
 
 @Component({
   selector: 'app-header',
@@ -13,14 +14,20 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 export class HeaderComponent {
   userLoggedIn = input();
   cart = input<Cart>();
-  dialogTitle: string = '';
+  dialogTitle = '';
+  stompClient = input<Stomp.Client>();
+  
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '900px',
       autoFocus: true,
-      data: { title: this.dialogTitle, cart: this.cart() },
+      data: {
+        title: this.dialogTitle,
+        cart: this.cart(),
+        stompClient: this.stompClient(),
+      },
     });
   }
 

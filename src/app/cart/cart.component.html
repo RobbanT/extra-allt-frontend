@@ -1,44 +1,22 @@
 <div>
   @if(cart()!.totalProducts() > 0) {
-  <ul>
-    @for(cartItem of cart()!.getCart(); track cartItem.title) {
-    <li>
-      <img src="{{ cartItem.image }}" />
-      <h4>{{ cartItem.title }}</h4>
-      <span>{{ cartItem.price }} kr</span>
-      <button
-        class="minus-button"
-        [disabled]="cartItem.quantity == 1"
-        (click)="
-          cart()?.setQuantityForProduct(cartItem.title, cartItem.quantity - 1)
-        "
-      >
-        -
-      </button>
-      <input [disabled]="true" [value]="cartItem.quantity" />
-      <button
-        class="plus-button"
-        (click)="
-          cart()?.setQuantityForProduct(cartItem.title, cartItem.quantity + 1)
-        "
-      >
-        +
-      </button>
-      <button
-        class="remove-button"
-        (click)="cart()?.removeProductFromCartAll(cartItem.title)"
-      ></button>
-    </li>
-
-    }
-  </ul>
-  <span
-    >Summa <br />
-    {{ cart()?.totalPrice() }} kr
-  </span>
-  <button id="left-button" (click)="openCheckoutDialog()">Till kassan</button>
-  <button id="right-button" (click)="cart()?.clearCart()">Töm varukorg</button>
+    <ul>
+      @for(cartItem of cart()!.getCart(); track cartItem.title) {
+        <li>
+          <h4>{{ cartItem.title }}</h4>
+          <span>{{ cartItem.price }} kr</span>
+          <img src="{{ cartItem.image }}" />
+          <button class="remove-button" (click)="cart()?.removeProductFromCartAll(cartItem.title)">Ta bort</button>
+          <button class="plus-button" (click)="cart()?.setQuantityForProduct(cartItem.title, cartItem.quantity + 1)">+</button>
+          <input [disabled]="true" [value]="cartItem.quantity" />
+          <button class="minus-button" [disabled]="cartItem.quantity == 1" (click)="cart()?.setQuantityForProduct(cartItem.title, cartItem.quantity - 1)">-</button>
+        </li>
+      }
+    </ul>
+    <span>Summa <br />{{ cart()?.totalPrice() }} kr</span>
+    <button id="left-button" (click)="openCheckoutDialog()">Till kassan</button>
+    <button id="right-button" (click)="cart()?.clearCart()">Töm varukorg</button>
   }@else {
-  <h4>Din varukorg är tom!</h4>
+    <h4>Din varukorg är tom!</h4>
   }
 </div>

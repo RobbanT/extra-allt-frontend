@@ -14,6 +14,7 @@ export class ProductsComponent {
   cart = input<Cart>();
   userLoggedIn = input<boolean>();
   products: Array<Product> = [];
+
   constructor() {
     fetch('http://localhost:8080/products')
       .then((res) => res.json())

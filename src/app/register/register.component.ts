@@ -10,12 +10,14 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
+  
 export class RegisterComponent {
   changedTitle = output<string>();
   username: string = '';
   password: string = '';
   passwordConfirm: string = '';
   dialogTitle: string = '';
+
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
@@ -25,6 +27,7 @@ export class RegisterComponent {
       data: { title: this.dialogTitle },
     });
   }
+
   changeTitle(title: string) {
     this.changedTitle.emit(title);
   }
@@ -40,14 +43,12 @@ export class RegisterComponent {
           username: this.username,
           password: this.password,
         }),
-      })
-        .then((res) => res.json())
+      }).then((res) => res.json())
         .then(() => {
           this.dialogTitle = `Användaren "${this.username}" är nu registrerad!`;
           this.openDialog();
           this.changeTitle('Produkter');
-        })
-        .catch(() => {
+        }).catch(() => {
           this.dialogTitle = `Användaren "${this.username}" existerar redan. Försök igen!`;
           this.openDialog();
         });

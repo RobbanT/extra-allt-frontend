@@ -15,7 +15,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-  
 export class AppComponent {
   title = signal('Produkter');
   userLoggedIn = signal(localStorage.getItem('user') != null);
@@ -28,22 +27,14 @@ export class AppComponent {
     this.stompClient().connect({}, (frame) => {
       this.stompClient().subscribe('/order/placed', (username) => {
         this._snackBar.open(
-          `Användaren \"${JSON.parse(username.body).username}\" har precis lagt en order! 💰🎉🎉`,
+          `Användaren \"${
+            JSON.parse(username.body).username
+          }\" har precis lagt en order! 💰🎉🎉`,
           '',
-          { duration: 5000 }
+          { duration: 10000 }
         );
       });
     });
-    /*
-        this.stompClient()?.send(
-      '/app/placed',
-      {},
-      JSON.stringify({
-        username: `${
-          JSON.parse(localStorage.getItem('user') as string).username
-        }`,
-      })
-    );*/
   }
 
   getTitle() {

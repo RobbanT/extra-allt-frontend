@@ -1,11 +1,15 @@
 <div>
   <h4>{{ data.title }}</h4>
-    @if(data.title == "Chat") {
-      <app-chat></app-chat>
-    }@else if (data.title == "Varukorg") {
-      <app-cart [cart]="data.cart" (changedTitle)="setTitle($event)"></app-cart>
-    }@else if (data.title == "Kassa") {
-      <app-checkout [cart]="data.cart" (changedTitle)="setTitle($event)" [stompClient]="data.stompClient"></app-checkout>
-    }
+  @if(data.title == "Chat") {
+  <app-chat></app-chat>
+  }@else if (data.title == "Varukorg") {
+  <app-cart [cart]="data.cart" (changedTitle)="setTitle($event)"></app-cart>
+  }@else if (data.title == "Kassa") {
+  <app-checkout
+    [cart]="data.cart"
+    (changedTitle)="setTitle($event)"
+    [stompClient]="data.stompClient"
+  ></app-checkout>
+  }
   <button (click)="onNoClick()">Stäng</button>
 </div>

@@ -18,6 +18,7 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
   dialogTitle: string = '';
+  
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {

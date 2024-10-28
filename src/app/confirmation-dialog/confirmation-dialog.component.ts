@@ -4,10 +4,13 @@ import { ChatComponent } from '../chat/chat.component';
 import { CartComponent } from '../cart/cart.component';
 import { Cart } from '../models/cart.model';
 import { CheckoutComponent } from '../checkout/checkout.component';
+import { loadStripe } from '@stripe/stripe-js';
+import Stomp from 'stompjs';
 
 export interface DialogData {
   title: string;
   cart: Cart;
+  stompClient: Stomp.Client;
 }
 
 @Component({
@@ -19,10 +22,14 @@ export interface DialogData {
 })
 export class ConfirmationDialogComponent {
   title = signal('');
+  checkout: any;
+
   constructor(
     public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {}
+  ) {
+    console.log(data.stompClient);
+  }
 
   setTitle(title: string) {
     this.title.set(title);

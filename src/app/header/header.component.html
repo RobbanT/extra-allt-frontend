@@ -4,7 +4,7 @@
   <button id="ai-button" [hidden]="!userLoggedIn()" (click)="openChat()"></button>
   <button id="cart-button" [hidden]="!userLoggedIn()" (click)="openCart()">
     @if(cart()!.totalProducts() > 0 ) {
-    <span>{{ cart()?.totalProducts() }}</span>
+      <span>{{ cart()?.totalProducts() }}</span>
     }
   </button>
 </header>

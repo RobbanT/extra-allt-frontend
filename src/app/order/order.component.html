@@ -1,23 +1,14 @@
 <li>
-  <h4>
-    Ordernummer<br />
-    {{ order()?.id }}
-  </h4>
-  <h5>
-    Beställningsdatum<br />
-    {{ order()?.timeCreated }}
-  </h5>
+  <h4>Ordernummer<br />{{ order()?.id }}</h4>
+  <h5>Beställningsdatum<br />{{ order()?.timeCreated }}</h5>
   <hr />
   @for(cartItem of order()?.cartItems; track cartItem.title) {
-  <div>
-    <h5>{{ cartItem.title }}</h5>
-    <img src="{{ cartItem.image }}" />
-    <span>{{ cartItem.quantity }} st à {{ cartItem.price }} kr</span>
-  </div>
-  <hr />
+    <div>
+      <h5>{{ cartItem.title }}</h5>
+      <img src="{{ cartItem.image }}" />
+      <span>{{ cartItem.quantity }} st à {{ cartItem.price }} kr</span>
+    </div>
+    <hr />
   }
-  <h5>
-    Totalsumma<br />
-    {{ order()?.totalSum }} kr
-  </h5>
+  <h5>Totalsumma<br />{{ order()?.totalSum }} kr</h5>
 </li>

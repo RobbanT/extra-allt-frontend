@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { Cart } from '../models/cart.model';
 import { loadStripe } from '@stripe/stripe-js';
+import Stomp from 'stompjs';
 
 @Component({
   selector: 'app-checkout',
@@ -12,24 +13,46 @@ import { loadStripe } from '@stripe/stripe-js';
 export class CheckoutComponent {
   cart = input<Cart>();
   changedTitle = output<string>();
-
-  constructor() {
-    this.initializeCheckoutSession();
-  }
-
-  onCompleted(): void {
-    localStorage.removeItem('cart');
-    this.checkout.destroy('#checkout-div');
-  }
-
   checkout: any;
+  stompClient = input<Stomp.Client>();
+
+  ngOnInit() {
+    this.initializeCheckoutSession();
+    console.log(this.stompClient());
+  }
+
+  async onCompleted() {
+    this.checkout.destroy('#checkout-div');
+    this.stompClient()?.send(
+      '/app/placed',
+      {},
+      JSON.stringify({
+        username: `${
+          JSON.parse(localStorage.getItem('user') as string).username
+        }`,
+      })
+    );
+    fetch(
+      `http://localhost:8080/${
+        JSON.parse(localStorage.getItem('user') as string).username
+      }/order`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cart: this.cart()?.getCart(),
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        alert('Färdig');
+      });
+  }
+
   async initializeCheckoutSession() {
-    if (
-      this.checkout != null &&
-      this.checkout.embeddedCheckout.isDestroyed === false
-    ) {
-      this.checkout.destroy('#checkout-div');
-    }
     let stripe = await loadStripe(
       'pk_test_51OmWP0DYlwtrgVcMwJHIMlNRU3WSPoDMSVpVmoxwO4XIHwIkR6UjU7qpc5GrIQULzPPrrNRA6PUtkUcvB8npFW3400LGqj3zkD'
     );
@@ -45,11 +68,20 @@ export class CheckoutComponent {
         body: localStorage.getItem('cart'),
       }
     );
+
     const { clientSecret } = await response.json();
     this.checkout = await stripe!.initEmbeddedCheckout({
       clientSecret,
       onComplete: this.onCompleted,
     });
+
+    this.checkout.destroy('#checkout-div');
+
+    this.checkout = await stripe!.initEmbeddedCheckout({
+      clientSecret,
+      onComplete: this.onCompleted,
+    });
+
     this!.checkout.mount('#checkout-div');
   }
 }

@@ -2,10 +2,6 @@
   <a (click)="changeTitle('Produkter')">Produkter</a>
   <a (click)="changeTitle('Logga in')" [hidden]="userLoggedIn()">Logga in</a>
   <a (click)="logOut()" [hidden]="!userLoggedIn()">Logga ut</a>
-  <a (click)="changeTitle('Registrera')" [hidden]="userLoggedIn()"
-    >Registrera</a
-  >
-  <a (click)="changeTitle('Mina ordrar')" [hidden]="!userLoggedIn()"
-    >Mina ordrar</a
-  >
+  <a (click)="changeTitle('Registrera')" [hidden]="userLoggedIn()">Registrera</a>
+  <a (click)="changeTitle('Mina ordrar')" [hidden]="!userLoggedIn()">Mina ordrar</a>
 </nav>

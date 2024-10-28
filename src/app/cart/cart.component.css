@@ -102,7 +102,6 @@ h4 {
 
 li > h4 {
   float: left;
-  display: inline-block;
   margin: 0 0 0 0;
 }
 
